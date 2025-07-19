@@ -141,24 +141,7 @@ function App() {
   return (
     <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
       <ScrollProgressBar />
-      
-      {/* Header */}
-      <header className="header">
-        <div className="header-content">
-          <div className="logo">
-            <span className="logo-text">JS</span>
-          </div>
-          <nav className="nav">
-            <a href="#home" className="nav-link">Home</a>
-            <a href="#about" className="nav-link">About</a>
-            <a href="#projects" className="nav-link">Projects</a>
-            <a href="#contact" className="nav-link">Contact</a>
-          </nav>
-          <button onClick={toggleDarkMode} className="theme-toggle">
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-        </div>
-      </header>
+   
 
       <main className="main-content">
         {/* Hero Section */}
@@ -413,7 +396,9 @@ function App() {
       <footer className="footer">
         <div className="footer-content">
           <p>&copy; 2024 Jitendra Suvan. Crafted with ❤️ using React.</p>
-         
+           <button onClick={toggleDarkMode} className="theme-toggle">
+      {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+    </button>
         </div>
       </footer>
 
@@ -535,19 +520,27 @@ function App() {
           width: 100%;
         }
 
-        .theme-toggle {
-          background: var(--bg-secondary);
-          border: 1px solid var(--border);
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          color: var(--text);
-        }
+    .theme-toggle {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text);
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+.theme-toggle:hover {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.1);
+}
+
 
         .theme-toggle:hover {
           background: var(--primary);
