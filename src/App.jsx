@@ -61,13 +61,13 @@ const ScrollProgressBar = () => {
 // Enhanced skills data
 const skills = [
   { name: 'React.js', percent: 95, icon: '⚛️' },
-  { name: 'Next.js', percent: 90, icon: '🚀' },
+  // { name: 'Next.js', percent: 90, icon: '🚀' },
   { name: 'TypeScript', percent: 88, icon: '📘' },
   { name: 'JavaScript ES6+', percent: 95, icon: '⚡' },
   { name: 'Tailwind CSS', percent: 92, icon: '🎨' },
   { name: 'Node.js', percent: 85, icon: '🟢' },
-  { name: 'MongoDB', percent: 80, icon: '🍃' },
-  { name: 'Firebase', percent: 85, icon: '🔥' },
+  // { name: 'MongoDB', percent: 80, icon: '🍃' },
+  // { name: 'Firebase', percent: 85, icon: '🔥' },
 ];
 
 // Enhanced projects data
@@ -96,32 +96,19 @@ const projects = [
     github: '#',
     image: '📝'
   },
-  {
-    title: 'AI-Powered Chat App',
-    desc: 'Modern chat application with AI integration, voice messages, file sharing, and real-time translation capabilities.',
-    tech: ['React', 'OpenAI', 'WebRTC', 'PostgreSQL'],
-    link: '#',
-    github: '#',
-    image: '🤖'
-  },
+ 
 ];
 
 // Experience data
 const experiences = [
   {
-    company: 'TechCorp Solutions',
-    role: 'Senior Frontend Developer',
+    company: 'Humbingo Consultacy Service LLP',
+    role: 'Frontend Developer',
     period: '2022 - Present',
     description: 'Leading frontend development for enterprise applications, mentoring junior developers, and implementing modern React architectures.',
     achievements: ['Improved app performance by 40%', 'Led team of 5 developers', 'Implemented CI/CD pipeline']
   },
-  {
-    company: 'StartupXYZ',
-    role: 'React Developer',
-    period: '2020 - 2022',
-    description: 'Built responsive web applications, collaborated with design teams, and contributed to the product roadmap.',
-    achievements: ['Delivered 15+ projects', 'Reduced load time by 60%', 'Built component library']
-  },
+  
 ];
 
 function App() {
