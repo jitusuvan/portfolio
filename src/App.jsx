@@ -1,11 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Moon, Sun, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Users, Award, Download } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Moon,
+  Sun,
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Code,
+  Palette,
+  Zap,
+  Users,
+  Award,
+  Download,
+} from "lucide-react";
 
 // Mock Lenis for demonstration
 const useLenis = () => {
   useEffect(() => {
     // Only enable custom scroll on desktop devices!
-    if (window.matchMedia('(pointer: fine)').matches) {
+    if (window.matchMedia("(pointer: fine)").matches) {
       let animationFrame;
       let currentScroll = window.scrollY;
       let targetScroll = window.scrollY;
@@ -29,11 +42,11 @@ const useLenis = () => {
         animationFrame = requestAnimationFrame(animate);
       };
 
-      window.addEventListener('wheel', handleWheel, { passive: false });
+      window.addEventListener("wheel", handleWheel, { passive: false });
       animate();
 
       return () => {
-        window.removeEventListener('wheel', handleWheel);
+        window.removeEventListener("wheel", handleWheel);
         if (animationFrame) cancelAnimationFrame(animationFrame);
       };
     }
@@ -41,39 +54,36 @@ const useLenis = () => {
   }, []);
 };
 
-
 // Scroll Progress Bar Component
 const ScrollProgressBar = () => {
   const [progress, setProgress] = useState(0);
-  
+
   useEffect(() => {
     const updateProgress = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = (scrollTop / docHeight) * 100;
       setProgress(scrollPercent);
     };
-    
-    window.addEventListener('scroll', updateProgress);
-    return () => window.removeEventListener('scroll', updateProgress);
+
+    window.addEventListener("scroll", updateProgress);
+    return () => window.removeEventListener("scroll", updateProgress);
   }, []);
-  
+
   return (
-    <div 
-      className="scroll-progress-bar" 
-      style={{ width: `${progress}%` }}
-    />
+    <div className="scroll-progress-bar" style={{ width: `${progress}%` }} />
   );
 };
 
 // Enhanced skills data
 const skills = [
-  { name: 'React.js', percent: 95, icon: '⚛️' },
+  { name: "React.js", percent: 95, icon: "⚛️" },
   // { name: 'Next.js', percent: 90, icon: '🚀' },
-  { name: 'TypeScript', percent: 88, icon: '📘' },
-  { name: 'JavaScript ES6+', percent: 95, icon: '⚡' },
-  { name: 'Tailwind CSS', percent: 92, icon: '🎨' },
-  { name: 'Node.js', percent: 85, icon: '🟢' },
+  { name: "TypeScript", percent: 88, icon: "📘" },
+  { name: "JavaScript ES6+", percent: 95, icon: "⚡" },
+  { name: "Tailwind CSS", percent: 92, icon: "🎨" },
+  { name: "Node.js", percent: 85, icon: "🟢" },
   // { name: 'MongoDB', percent: 80, icon: '🍃' },
   // { name: 'Firebase', percent: 85, icon: '🔥' },
 ];
@@ -81,52 +91,58 @@ const skills = [
 // Enhanced projects data
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    desc: 'Full-stack e-commerce solution with React, Node.js, and Stripe integration. Features real-time inventory, user authentication, and admin dashboard.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    link: '#',
-    github: '#',
-    image: '🛒'
+    title: "EzHisab",
+    desc: "A digital ledger and expense tracking app used by store owners to manage sales, gas, lottery, and general expenses. I developed the complete frontend using React.js, consuming REST APIs provided by a Django backend.",
+    tech: ["React.js", "REST API", "Bootstrap"],
+    link: "https://beta.ezhisab.com",
+    github: "#", // Optional: Frontend GitHub repo
+    image: "📊", // Optional: Replace with a real image or emoji
   },
   {
-    title: 'Social Media Dashboard',
-    desc: 'Analytics dashboard for social media management with real-time data visualization, post scheduling, and engagement tracking.',
-    tech: ['Next.js', 'TypeScript', 'Chart.js', 'Firebase'],
-    link: '#',
-    github: '#',
-    image: '📊'
+    title: "Paisavara",
+    desc: "A digital ledger and expense tracking app used by store owners to manage sales, gas, lottery, and general expenses. I developed the complete frontend using React.js, consuming REST APIs provided by a Django backend. The app also includes features like cheque printing, inventory management, payroll processing, and timecard tracking.",
+    tech: ["React.js", "REST API", "Bootstrap"],
+    link: "http://paisavara.com/",
+    github: "#", // Optional: Frontend GitHub repo
+    image: "💼", // Optional: Replace with an emoji or project image
   },
-  {
-    title: 'Task Management App',
-    desc: 'Collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.',
-    tech: ['React', 'Redux', 'Socket.io', 'Express'],
-    link: '#',
-    github: '#',
-    image: '📝'
-  },
- 
+  // {
+  //   title: "Task Management App",
+  //   desc: "Collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
+  //   tech: ["React", "Redux", "Socket.io", "Express"],
+  //   link: "#",
+  //   github: "#",
+  //   image: "📝",
+  // },
 ];
 
 // Experience data
 const experiences = [
   {
-    company: 'Humbingo Consultacy Service LLP',
-    role: 'Frontend Developer',
-    period: '2022 - Present',
-    description: 'Leading frontend development for enterprise applications, mentoring junior developers, and implementing modern React architectures.',
-    achievements: ['Improved app performance by 40%', 'Led team of 5 developers', 'Implemented CI/CD pipeline']
+    company: "Humbingo Consultacy Service LLP",
+    role: "Frontend Developer",
+    period: "2023- Present",
+    description:
+      "Leading frontend development for enterprise applications, mentoring junior developers, and implementing modern React architectures.",
+    achievements: [
+      "Improved app performance by 40%",
+      "Led team of 5 developers",
+      "Implemented CI/CD pipeline",
+    ],
   },
-  
 ];
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [activeSection, setActiveSection] = useState('home');
-  
+  const [activeSection, setActiveSection] = useState("home");
+
   useLenis();
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
   }, [darkMode]);
 
   const toggleDarkMode = () => {
@@ -134,10 +150,15 @@ function App() {
   };
 
   return (
-    <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
+    <div className={`app-container ${darkMode ? "dark" : "light"}`}>
       <ScrollProgressBar />
-   
-
+      <button
+        onClick={toggleDarkMode}
+        className="theme-toggle-fixed"
+        aria-label="Switch theme"
+      >
+        {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
       <main className="main-content">
         {/* Hero Section */}
         <section id="home" className="hero-section">
@@ -150,22 +171,25 @@ function App() {
               <h1 className="hero-title">
                 Hi, I'm <span className="gradient-text">Jitendra Suvan</span>
               </h1>
-              <h2 className="hero-subtitle">Senior React Developer & UI/UX Enthusiast</h2>
+              <h2 className="hero-subtitle">
+                Frontend Developer & UI/UX Enthusiast
+              </h2>
               <p className="hero-description">
-                I craft exceptional digital experiences with modern web technologies. 
-                Specializing in React, Next.js, and cutting-edge frontend development.
+                I build modern, responsive web applications using React.js,
+                JSX/TSX, and Vite. Passionate about clean UI, smooth UX, and
+                performance-first development.
               </p>
               <div className="hero-stats">
                 <div className="stat">
-                  <div className="stat-number">50+</div>
+                  <div className="stat-number">7+</div>
                   <div className="stat-label">Projects Completed</div>
                 </div>
                 <div className="stat">
-                  <div className="stat-number">4+</div>
+                  <div className="stat-number">1+</div>
                   <div className="stat-label">Years Experience</div>
                 </div>
                 <div className="stat">
-                  <div className="stat-number">25+</div>
+                  <div className="stat-number">4+</div>
                   <div className="stat-label">Happy Clients</div>
                 </div>
               </div>
@@ -174,24 +198,42 @@ function App() {
                   <Download size={18} />
                   Download CV
                 </button>
-                <button className="btn-secondary">
-                  View Projects
-                </button>
+                <button className="btn-secondary">View Projects</button>
               </div>
             </div>
             <div className="hero-visual">
               <div className="profile-container">
-                <img 
-                  src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" 
-                  alt="Profile" 
-                  className="profile-image" 
+                <img
+                  src="https://avatars.githubusercontent.com/u/9919?s=200&v=4"
+                  alt="Profile"
+                  className="profile-image"
                 />
                 <div className="profile-ring"></div>
                 <div className="floating-icons">
-                  <div className="floating-icon" style={{top: '10%', left: '15%'}}>⚛️</div>
-                  <div className="floating-icon" style={{top: '20%', right: '10%'}}>🚀</div>
-                  <div className="floating-icon" style={{bottom: '15%', left: '10%'}}>💻</div>
-                  <div className="floating-icon" style={{bottom: '25%', right: '15%'}}>🎨</div>
+                  <div
+                    className="floating-icon"
+                    style={{ top: "10%", left: "15%" }}
+                  >
+                    ⚛️
+                  </div>
+                  <div
+                    className="floating-icon"
+                    style={{ top: "20%", right: "10%" }}
+                  >
+                    🚀
+                  </div>
+                  <div
+                    className="floating-icon"
+                    style={{ bottom: "15%", left: "10%" }}
+                  >
+                    💻
+                  </div>
+                  <div
+                    className="floating-icon"
+                    style={{ bottom: "25%", right: "15%" }}
+                  >
+                    🎨
+                  </div>
                 </div>
               </div>
             </div>
@@ -202,20 +244,24 @@ function App() {
         <section id="about" className="content-section">
           <div className="section-header">
             <h2 className="section-title">About Me</h2>
-            <p className="section-subtitle">Passionate about creating amazing user experiences</p>
+            <p className="section-subtitle">
+              Passionate about creating amazing user experiences
+            </p>
           </div>
-          
+
           <div className="about-grid">
             <div className="about-text">
               <p>
-                I'm a passionate frontend developer with 4+ years of experience building modern, 
-                scalable web applications. I love turning complex problems into simple, beautiful designs.
+                I'm a passionate frontend developer with 1+ years of experience
+                building modern, scalable web applications. I love turning
+                complex problems into simple, beautiful designs.
               </p>
               <p>
-                My expertise spans across React ecosystem, TypeScript, and modern CSS frameworks. 
-                I'm always eager to learn new technologies and contribute to open-source projects.
+                My expertise spans across React ecosystem, TypeScript, and
+                modern CSS frameworks. I'm always eager to learn new
+                technologies and contribute to open-source projects.
               </p>
-              
+
               <div className="about-highlights">
                 <div className="highlight">
                   <Code className="highlight-icon" />
@@ -240,11 +286,11 @@ function App() {
                 </div>
               </div>
             </div>
-            
+
             <div className="skills-container">
               <h3>Technical Skills</h3>
               <div className="skills-grid">
-                {skills.map(skill => (
+                {skills.map((skill) => (
                   <div key={skill.name} className="skill-card">
                     <div className="skill-header">
                       <span className="skill-icon">{skill.icon}</span>
@@ -252,9 +298,9 @@ function App() {
                       <span className="skill-percent">{skill.percent}%</span>
                     </div>
                     <div className="skill-bar">
-                      <div 
-                        className="skill-fill" 
-                        style={{width: `${skill.percent}%`}}
+                      <div
+                        className="skill-fill"
+                        style={{ width: `${skill.percent}%` }}
                       ></div>
                     </div>
                   </div>
@@ -293,7 +339,7 @@ function App() {
             <h2 className="section-title">Featured Projects</h2>
             <p className="section-subtitle">Some of my recent work</p>
           </div>
-          
+
           <div className="projects-grid">
             {projects.map((project, index) => (
               <div key={index} className="project-card">
@@ -305,7 +351,9 @@ function App() {
                   <p>{project.desc}</p>
                   <div className="project-tech">
                     {project.tech.map((tech, i) => (
-                      <span key={i} className="tech-tag">{tech}</span>
+                      <span key={i} className="tech-tag">
+                        {tech}
+                      </span>
                     ))}
                   </div>
                   <div className="project-links">
@@ -328,33 +376,47 @@ function App() {
         <section id="contact" className="content-section">
           <div className="section-header">
             <h2 className="section-title">Let's Work Together</h2>
-            <p className="section-subtitle">Ready to bring your ideas to life</p>
+            <p className="section-subtitle">
+              Ready to bring your ideas to life
+            </p>
           </div>
-          
+
           <div className="contact-grid">
             <div className="contact-info">
               <h3>Get in Touch</h3>
               <p>
-                I'm always excited to work on new projects and collaborate with amazing people. 
-                Let's discuss how we can bring your vision to life!
+                I'm always excited to work on new projects and collaborate with
+                amazing people. Let's discuss how we can bring your vision to
+                life!
               </p>
-              
-              <div className="contact-methods">
-                <a href="mailto:jitendrasuvan@gmail.com" className="contact-method">
+
+              <div className="contact-methoßds">
+                <a
+                  href="mailto:jitendrasuvan@gmail.com"
+                  className="contact-method"
+                >
                   <Mail className="contact-icon" />
                   <div>
                     <h4>Email</h4>
-                    <p>jitendrasuvan@gmail.com</p>
+                    <p>suvanjitendra@gmail.com</p>
                   </div>
                 </a>
-                <a href="https://linkedin.com/in/jitendrasuvan" className="contact-method">
+                <a
+                  href="https://www.linkedin.com/in/jitendra-suvan-b03ab8215/"
+                  className="contact-method"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Linkedin className="contact-icon" />
                   <div>
                     <h4>LinkedIn</h4>
                     <p>Connect with me</p>
                   </div>
                 </a>
-                <a href="https://github.com/jitendrasuvan" className="contact-method">
+                <a
+                  href="https://github.com/jitusuvan"
+                  className="contact-method"
+                >
                   <Github className="contact-icon" />
                   <div>
                     <h4>GitHub</h4>
@@ -363,20 +425,36 @@ function App() {
                 </a>
               </div>
             </div>
-            
+
             <div className="contact-form">
               <form>
                 <div className="form-group">
-                  <input type="text" placeholder="Your Name" className="form-input" />
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="form-input"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="email" placeholder="Your Email" className="form-input" />
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="form-input"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="text" placeholder="Subject" className="form-input" />
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    className="form-input"
+                  />
                 </div>
                 <div className="form-group">
-                  <textarea placeholder="Your Message" rows="5" className="form-input"></textarea>
+                  <textarea
+                    placeholder="Your Message"
+                    rows="5"
+                    className="form-input"
+                  ></textarea>
                 </div>
                 <button type="submit" className="btn-primary full-width">
                   Send Message
@@ -390,10 +468,10 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2024 Jitendra Suvan. Crafted with ❤️ using React.</p>
-           <button onClick={toggleDarkMode} className="theme-toggle">
-      {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-    </button>
+          <p>
+            &copy; 2024 Jitendra Suvan. Designed and developed with passion
+            using React.
+          </p>
         </div>
       </footer>
 
@@ -406,7 +484,7 @@ function App() {
           --gradient: linear-gradient(135deg, #6366f1 0%, #14b8a6 100%);
         }
 
-        [data-theme='dark'] {
+        [data-theme="dark"] {
           --bg: #0f0f23;
           --bg-secondary: #1a1a3a;
           --bg-tertiary: #252547;
@@ -417,7 +495,7 @@ function App() {
           --header-bg: rgba(15, 15, 35, 0.95);
         }
 
-        [data-theme='light'] {
+        [data-theme="light"] {
           --bg: #ffffff;
           --bg-secondary: #f8fafc;
           --bg-tertiary: #e2e8f0;
@@ -437,7 +515,7 @@ function App() {
         .app-container {
           background: var(--bg);
           color: var(--text);
-          font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+          font-family: "Inter", "Segoe UI", system-ui, sans-serif;
           line-height: 1.6;
           overflow-x: hidden;
           transition: all 0.3s ease;
@@ -453,96 +531,29 @@ function App() {
           transition: width 0.3s ease;
         }
 
-        .header {
+        .theme-toggle-fixed {
           position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          background: var(--header-bg);
-          backdrop-filter: blur(20px);
-          border-bottom: 1px solid var(--border);
-          z-index: 100;
-          padding: 1rem 0;
-        }
-
-        .header-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2rem;
+          top: 18px;
+          right: 16px;
+          background: var(--bg-secondary);
+          border: 1px solid var(--border);
+          border-radius: 50%;
+          width: 44px;
+          height: 44px;
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 1500;
+          color: var(--text);
+          box-shadow: 0 2px 10px rgba(40, 40, 60, 0.08);
+          transition: background 0.17s, color 0.17s, box-shadow 0.18s;
         }
-
-        .logo-text {
-          font-size: 1.5rem;
-          font-weight: 800;
-          background: var(--gradient);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .nav {
-          display: flex;
-          gap: 2rem;
-        }
-
-        .nav-link {
-          color: var(--text-secondary);
-          text-decoration: none;
-          font-weight: 500;
-          transition: color 0.3s ease;
-          position: relative;
-        }
-
-        .nav-link:hover {
-          color: var(--primary);
-        }
-
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 2px;
+        .theme-toggle-fixed:hover {
           background: var(--primary);
-          transition: width 0.3s ease;
+          color: #fff;
+          box-shadow: 0 6px 18px rgba(99, 102, 241, 0.18);
         }
-
-        .nav-link:hover::after {
-          width: 100%;
-        }
-
-    .theme-toggle {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--text);
-  margin-top: 1rem;
-  font-size: 1.25rem;
-}
-.theme-toggle:hover {
-  background: var(--primary);
-  color: white;
-  transform: scale(1.1);
-}
-
-
-        .theme-toggle:hover {
-          background: var(--primary);
-          color: white;
-          transform: scale(1.1);
-        }
-
         .main-content {
           max-width: 1200px;
           margin: 0 auto;
@@ -633,7 +644,8 @@ function App() {
           gap: 1rem;
         }
 
-        .btn-primary, .btn-secondary {
+        .btn-primary,
+        .btn-secondary {
           padding: 1rem 2rem;
           border-radius: 12px;
           font-weight: 600;
@@ -709,8 +721,12 @@ function App() {
         }
 
         @keyframes rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
         }
 
         .floating-icons {
@@ -734,8 +750,13 @@ function App() {
         }
 
         @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
         }
 
         .content-section {
@@ -880,7 +901,7 @@ function App() {
         }
 
         .experience-timeline::before {
-          content: '';
+          content: "";
           position: absolute;
           left: 1rem;
           top: 0;
@@ -933,7 +954,7 @@ function App() {
           margin-top: 1rem;
         }
 
-         .achievements li {
+        .achievements li {
           position: relative;
           padding-left: 1.5rem;
           color: var(--text-secondary);
@@ -941,7 +962,7 @@ function App() {
         }
 
         .achievements li::before {
-          content: '✓';
+          content: "✓";
           position: absolute;
           left: 0;
           color: var(--accent);
@@ -953,13 +974,13 @@ function App() {
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
           gap: 2rem;
         }
-        
+
         .project-card {
           background: var(--card-bg);
           border: 1px solid var(--border);
           border-radius: 20px;
           transition: transform 0.25s;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
           display: flex;
           flex-direction: column;
           overflow: hidden;
@@ -969,7 +990,7 @@ function App() {
           transform: translateY(-6px) scale(1.02);
           box-shadow: 0 16px 32px rgba(99, 102, 241, 0.07);
         }
-        
+
         .project-image {
           display: flex;
           align-items: center;
@@ -1117,19 +1138,18 @@ function App() {
           margin-top: 5rem;
         }
 
-     .footer-content {
-  display: flex;
-  flex-direction: column;       /* Stack items vertically */
-  align-items: center;          /* Center horizontally */
-  justify-content: center;      /* Center vertically (optional) */
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 2rem;
-  color: var(--text-secondary);
-  font-size: 1rem;
-  text-align: center;           /* Center text */
-}
-
+        .footer-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0.7rem 1rem; /* Chhota! */
+          color: var(--text-secondary);
+          font-size: 1rem;
+          text-align: center;
+        }
         .footer-links {
           display: flex;
           gap: 2rem;
@@ -1144,15 +1164,18 @@ function App() {
           color: var(--primary);
         }
 
-
         /* Responsive Styles */
         @media (max-width: 992px) {
-          .hero-content, .about-grid, .contact-grid {
+          .hero-content,
+          .about-grid,
+          .contact-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
           }
 
-          .main-content, .header-content, .footer-content {
+          .main-content,
+          .header-content,
+          .footer-content {
             padding-left: 1rem;
             padding-right: 1rem;
           }
@@ -1167,7 +1190,9 @@ function App() {
         }
 
         @media (max-width: 680px) {
-          .main-content, .header-content, .footer-content {
+          .main-content,
+          .header-content,
+          .footer-content {
             padding-left: 0.5rem;
             padding-right: 0.5rem;
           }
