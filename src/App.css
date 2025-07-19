@@ -4,16 +4,11 @@ body {
   background-color: #f9f9f9;
 }
 body, html, .app-container {
-  /* overflow: hidden;   <--- REMOVE or COMMENT this line! */
-  scrollbar-width: none;   /* Hide for Firefox */
-  -ms-overflow-style: none; /* Hide for Internet Explorer 10+ */
+  scrollbar-width: none;   /* Firefox */
+  -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar, 
-html::-webkit-scrollbar, 
-.app-container::-webkit-scrollbar {
-  display: none;  /* Hide for Chrome/Safari/Opera */
-}
+
 .header {
   display: flex;
   align-items: center;
