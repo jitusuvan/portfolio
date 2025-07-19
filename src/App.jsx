@@ -4,35 +4,43 @@ import { Moon, Sun, Github, Linkedin, Mail, ExternalLink, Code, Palette, Zap, Us
 // Mock Lenis for demonstration
 const useLenis = () => {
   useEffect(() => {
-    let animationFrame;
-    let currentScroll = 0;
-    let targetScroll = 0;
-    const lerp = 0.05;
-    
-    const handleWheel = (e) => {
-      e.preventDefault();
-      targetScroll += e.deltaY * 0.8;
-      targetScroll = Math.max(0, Math.min(targetScroll, document.documentElement.scrollHeight - window.innerHeight));
-    };
-    
-    const animate = () => {
-      currentScroll += (targetScroll - currentScroll) * lerp;
-      window.scrollTo(0, currentScroll);
-      animationFrame = requestAnimationFrame(animate);
-    };
-    
-    targetScroll = window.scrollY;
-    currentScroll = window.scrollY;
-    
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    animate();
-    
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-    };
+    // Only enable custom scroll on desktop devices!
+    if (window.matchMedia('(pointer: fine)').matches) {
+      let animationFrame;
+      let currentScroll = window.scrollY;
+      let targetScroll = window.scrollY;
+      const lerp = 0.05;
+
+      const handleWheel = (e) => {
+        e.preventDefault();
+        targetScroll += e.deltaY * 0.8;
+        targetScroll = Math.max(
+          0,
+          Math.min(
+            targetScroll,
+            document.documentElement.scrollHeight - window.innerHeight
+          )
+        );
+      };
+
+      const animate = () => {
+        currentScroll += (targetScroll - currentScroll) * lerp;
+        window.scrollTo(0, currentScroll);
+        animationFrame = requestAnimationFrame(animate);
+      };
+
+      window.addEventListener('wheel', handleWheel, { passive: false });
+      animate();
+
+      return () => {
+        window.removeEventListener('wheel', handleWheel);
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+      };
+    }
+    // On mobile/touch, DO NOTHING, let browser scroll naturally!
   }, []);
 };
+
 
 // Scroll Progress Bar Component
 const ScrollProgressBar = () => {
