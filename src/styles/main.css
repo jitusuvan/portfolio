@@ -1,0 +1,7 @@
+/* Main CSS file - imports all component styles */
+@import './components/base.css';
+@import './components/theme.css';
+@import './components/hero.css';
+@import './components/about.css';
+@import './components/common.css';
+@import './components/sections.css';
