@@ -1,0 +1,29 @@
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+body, html, .app-container {
+  /* NO overflow: hidden! */
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE10+ */
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+.app-container::-webkit-scrollbar {
+  display: none;   /* Chrome/Safari/Opera */
+}

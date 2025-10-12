@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Moon,
   Sun,
@@ -13,46 +13,6 @@ import {
   Award,
   Download,
 } from "lucide-react";
-
-// Mock Lenis for demonstration
-const useLenis = () => {
-  useEffect(() => {
-    // Only enable custom scroll on desktop devices!
-    if (window.matchMedia("(pointer: fine)").matches) {
-      let animationFrame;
-      let currentScroll = window.scrollY;
-      let targetScroll = window.scrollY;
-      const lerp = 0.05;
-
-      const handleWheel = (e) => {
-        e.preventDefault();
-        targetScroll += e.deltaY * 0.8;
-        targetScroll = Math.max(
-          0,
-          Math.min(
-            targetScroll,
-            document.documentElement.scrollHeight - window.innerHeight
-          )
-        );
-      };
-
-      const animate = () => {
-        currentScroll += (targetScroll - currentScroll) * lerp;
-        window.scrollTo(0, currentScroll);
-        animationFrame = requestAnimationFrame(animate);
-      };
-
-      window.addEventListener("wheel", handleWheel, { passive: false });
-      animate();
-
-      return () => {
-        window.removeEventListener("wheel", handleWheel);
-        if (animationFrame) cancelAnimationFrame(animationFrame);
-      };
-    }
-    // On mobile/touch, DO NOTHING, let browser scroll naturally!
-  }, []);
-};
 
 // Scroll Progress Bar Component
 const ScrollProgressBar = () => {
@@ -135,8 +95,6 @@ const experiences = [
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState("home");
-
-  useLenis();
 
   useEffect(() => {
     document.documentElement.setAttribute(
@@ -866,6 +824,9 @@ function App() {
           flex: 1;
           font-weight: 600;
         }
+
+        .skill-percent {
+          color: var(--primary);
 
         .skill-percent {
           color: var(--primary);
